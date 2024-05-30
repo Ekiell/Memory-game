@@ -1,0 +1,58 @@
+.boites {
+    display: grid;
+    /* Active le mode Grid*/
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 colonnes de taille égale */
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+    /* Espace entre les cartes */
+}
+
+#title-memory {
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    width: 10vw;
+    /* Définit la largeur de chaque carte en fonction de la taille de la grille */
+    height: 10vh;
+    /* Définit la hauteur de chaque carte */
+    background-image: url("/Memory-game/images/helldivers");
+    /* Définit la couleur de fond de chaque carte */
+    display: flex;
+    /* Utilise flexbox pour centrer le contenu des cartes */
+    justify-content: center;
+    /* Centre horizontalement le contenu des cartes */
+    align-items: center;
+    /* Centre verticalement le contenu des cartes */
+    font-size: 24px;
+    /* Définit la taille de la police du contenu des cartes */
+    cursor: pointer;
+    /* Change le curseur au survol pour indiquer que les cartes sont cliquables */
+    user-select: none;
+    /* Empêche la sélection de texte sur les cartes */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.box.flipped {
+    background-color: #dfdfdf;
+    /* Change la couleur de fond des cartes retournées */
+}
+
+.box.matched {
+    background-color: #dfdfdf;
+    /* Change la couleur de fond des cartes appariées */
+    cursor: default;
+    /* Change le curseur pour indiquer que les cartes appariées ne sont plus cliquables */
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #dfdfdf;
+    padding: 20px;
+    margin: 10px;
+}
