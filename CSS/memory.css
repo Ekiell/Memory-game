@@ -18,7 +18,7 @@
     /* Définit la largeur de chaque carte en fonction de la taille de la grille */
     height: 200px;
     /* Définit la hauteur de chaque carte */
-    background-image: url("/Memory-game/images/helldivers");
+    background-image: url("https://ih1.redbubble.net/image.3939890202.5494/raf,360x360,075,t,fafafa:ca443f4786.jpg");
     /* Définit la couleur de fond de chaque carte */
     display: flex;
     /* Utilise flexbox pour centrer le contenu des cartes */
@@ -35,6 +35,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    border-radius: 10px;
 }
 
 .box.flipped {
@@ -52,7 +53,7 @@
 .main-container {
     display: flex;
     flex-direction: column;
-    background-color: #dfdfdf;
+    background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     margin: 10px;
     border-radius: 5px;
