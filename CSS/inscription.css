@@ -1,0 +1,18 @@
+.inscription {
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 30vw;
+    height: 35vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+}
+
+#userName,
+#mail,
+#motDePasse {
+    height: auto;
+    width: auto;
+
+}
