@@ -14,9 +14,9 @@
 }
 
 .box {
-    width: 10vw;
+    width: 200px;
     /* Définit la largeur de chaque carte en fonction de la taille de la grille */
-    height: 10vh;
+    height: 200px;
     /* Définit la hauteur de chaque carte */
     background-image: url("/Memory-game/images/helldivers");
     /* Définit la couleur de fond de chaque carte */
@@ -55,4 +55,5 @@
     background-color: #dfdfdf;
     padding: 20px;
     margin: 10px;
+    border-radius: 5px;
 }

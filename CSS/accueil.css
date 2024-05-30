@@ -1,4 +1,4 @@
-#Memory-game {
+#memory-game {
     text-align: center;
 }
 
@@ -10,7 +10,7 @@
     justify-content: flex-start;
     align-items: center;
     margin: 10vh auto;
-    border-radius: 17px;
+    border-radius: 5px;
     padding: 20px;
     box-sizing: border-box;
     overflow-x: auto;

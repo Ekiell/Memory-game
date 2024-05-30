@@ -5,21 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/Memory-game/CSS/style.css" rel="stylesheet">
-    <title>Site webbbb</title>
+    <link href="/Memory-game/CSS/inscription.css" rel="stylesheet">
+    <title>Inscription</title>
 </head>
 
 <body>
     <header>
         <nav>
-            <a href="/Memory-game/HTML/index.html">Accueil</a>
-            <a href="/Memory-game/HTML/memory.html">Memory</a>
-            <a href="/Memory-game/HTML/compte.html">Profil</a>
-            <a href="/Memory-game/HTML/inscription.html">Inscription</a>
+            <ul>
+                <li>
+                    <a href="/Memory-game/HTML/index.html">Accueil</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="/Memory-game/HTML/inscription.html">Inscription</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="/Memory-game/HTML/connexion.html">Se connecter</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="/Memory-game/HTML/profil.html">Profil</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="/Memory-game/HTML/memory.html">Memory</a>
+                </li>
+            </ul>
         </nav>
     </header>
 
     <main>
+        <div class="inscription">
+            <h1>Inscrivez vous</h1>
+            <label for="mail" id="userName">Nom d'utilisateur<span style=" color: darkred;">*</span> :</label>
+            <input type="text" id="userName" name="userName" class="input" autofocus required
+                placeholder="3 caractères minimum" pattern="[A-Za-z]{3,}"
+                title="Saisisez votre nom (3 caractères minimum.)" />
+            <label for="mail" id="mail">Mail<span style=" color: darkred;">*</span> :</label>
+            <input type="email" id="mail" name="mail" class="input" placeholder="batthew.prof@mail.com"
+                title="Saisisez votre adresse mail" />
 
+            <label for="motDePasse" id="motDePasse">Mot de passe<span style=" color: darkred;">*</span> :</label>
+            <input type="password" id="motDePasse" name="motDePasse" class="input" placeholder="Votre mot de passe"
+                title="Veuillez saisir un mot de passe valide:" />
+        </div>
     </main>
 </body>
 
