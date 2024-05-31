@@ -6,10 +6,11 @@ html {
 
 body {
     color: #000000;
-    background-image: url('../images/wp13290366-helldivers-2-wallpapers.webp');
+    background-image: url("https://image.api.playstation.com/vulcan/ap/rnd/202309/2116/3f1bd2f20b06047e0f029d44c909a2a58b45e7fc6ae1dd0f.jpg");
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
 }
 
 nav {
@@ -25,7 +26,7 @@ nav ul li {
 }
 
 nav a {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -48,4 +49,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+}
+
+h1 {
+    text-transform: uppercase;
 }

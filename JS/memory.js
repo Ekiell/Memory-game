@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     this.classList.add("flipped"); // Ajoute la classe flipped à la carte
     this.style.backgroundImage = `url(${
-      cards[this.getAttribute("data-id")].img
+        cards[this.getAttribute("data-id")].img
     })`; // Affiche l'image de la carte
 
     if (!firstCard) {
