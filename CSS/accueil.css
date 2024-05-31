@@ -1,33 +1,55 @@
 #memory-game {
     text-align: center;
+    /* Centre le texte à l'intérieur de l'élément */
 }
 
 .presentation {
     background-color: rgba(255, 255, 255, 0.7);
+    /* Couleur de fond avec transparence */
     width: 60vw;
+    /* Largeur à 60% de la fenêtre */
     display: flex;
+    /* Affichage en flexbox */
     flex-direction: column;
+    /* Orientation des éléments en colonne */
     justify-content: flex-start;
+    /* Aligne les éléments au début */
     align-items: center;
+    /* Centre les éléments horizontalement */
     padding: 20px;
+    /* Padding interne de 20px */
     border-radius: 5px;
+    /* Coins arrondis */
     box-sizing: border-box;
+    /* Inclut le padding et la bordure dans la largeur et la hauteur */
     overflow-x: auto;
+    /* Défilement horizontal automatique si nécessaire */
 }
 
 .content {
     width: 100%;
+    /* Largeur à 100% du conteneur parent */
     display: flex;
+    /* Affichage en flexbox */
     flex-direction: column;
+    /* Orientation des éléments en colonne */
     justify-content: center;
+    /* Centre les éléments verticalement */
     align-items: center;
+    /* Centre les éléments horizontalement */
     text-align: center;
+    /* Centre le texte à l'intérieur des éléments */
     box-sizing: border-box;
+    /* Inclut le padding et la bordure dans la largeur et la hauteur */
 }
 
 #jeu-memory {
     margin: 20px 0;
+    /* Marge verticale de 20px */
     height: auto;
+    /* Hauteur automatique */
     width: 80%;
+    /* Largeur à 80% du conteneur parent */
     max-width: 500px;
+    /* Largeur maximale de 500px */
 }

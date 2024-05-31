@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Liste des cartes avec leurs identifiants et images (doublon supprimé)
+  // Définition des cartes
   const cards = [
     { id: 1, name: "monster1", img: "/Memory-game/images/chargeur.webp" },
     { id: 2, name: "monster2", img: "/Memory-game/images/Hunter_II.webp" },
@@ -13,86 +13,116 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: 10, name: "monster10", img: "/Memory-game/images/Shrieker.webp" },
     {
       id: 11,
-      name: "monster5",
+      name: "monster11",
       img: "/Memory-game/images/titan-corrosif.webp",
     },
     { id: 12, name: "monster12", img: "/Memory-game/images/Warrior.webp" },
-  ]; // Mélange les cartes de manière aléatoire
+  ];
 
+  // Mélange aléatoire des cartes
   cards.sort(() => 0.5 - Math.random());
 
-  const board = document.querySelector(".boites"); // Sélectionne l'élément contenant les cartes
-  let firstCard = null; // Stocke la première carte retournée
-  let secondCard = null; // Stocke la deuxième carte retournée
-  let lockBoard = false; // Empêche de retourner plus de deux cartes à la fois
+  // Sélection du plateau de jeu
+  const board = document.querySelector(".boites");
+  let flippedCards = [];
+  let count = 0;
 
-  // Crée le plateau de jeu en ajoutant les cartes à l'élément board
+  // Fonction pour créer le plateau de jeu
   function createBoard() {
     cards.forEach((card, index) => {
-      const cardElement = document.createElement("div"); // Crée un nouvel élément div pour chaque carte
-      cardElement.classList.add("box"); // Ajoute la classe CSS box à l'élément
-      cardElement.setAttribute("data-id", index); // Définit un attribut data-id pour identifier la carte
-      cardElement.addEventListener("click", flipCard); // Ajoute un événement click pour retourner la carte
-      board.appendChild(cardElement); // Ajoute la carte à l'élément board
+      // Création de chaque carte
+      const cardElement = document.createElement("div");
+      cardElement.classList.add("box");
+      cardElement.setAttribute("data-id", index);
+
+      const cardInner = document.createElement("div");
+      cardInner.classList.add("box-inner");
+
+      const cardFront = document.createElement("div");
+      cardFront.classList.add("box-front");
+
+      const cardBack = document.createElement("div");
+      cardBack.classList.add("box-back");
+      cardBack.style.backgroundImage = `url(${card.img})`;
+
+      // Ajout des éléments de la carte
+      cardInner.appendChild(cardFront);
+      cardInner.appendChild(cardBack);
+      cardElement.appendChild(cardInner);
+
+      // Ajout de l'événement de clic pour retourner la carte
+      cardElement.addEventListener("click", () => {
+        flipCard(cardElement);
+      });
+      // Ajout de la carte au plateau de jeu
+      board.appendChild(cardElement);
     });
-  } // Retourne une carte
+  }
 
-  function flipCard() {
-    if (lockBoard) return; // Si le plateau est verrouillé, ne fait rien
-    if (this === firstCard) return; // Si la carte cliquée est la première carte, ne fait rien
+  // Fonction pour retourner une carte
+  function flipCard(cardElement) {
+    // Vérification si la carte est déjà retournée ou si deux cartes sont déjà retournées
+    if (flippedCards.length === 2 || flippedCards.includes(cardElement)) return;
 
-    this.classList.add("flipped"); // Ajoute la classe flipped à la carte
-    this.style.backgroundImage = `url(${
-        cards[this.getAttribute("data-id")].img
-    })`; // Affiche l'image de la carte
+    // Ajout de la classe 'flipped' pour retourner la carte
+    cardElement.classList.add("flipped");
+    flippedCards.push(cardElement);
 
-    if (!firstCard) {
-      firstCard = this; // Si aucune carte n'est retournée, définit la carte actuelle comme la première carte
-      return;
+    // Vérification si deux cartes sont retournées
+    if (flippedCards.length === 2) {
+      // Incrémentation du compteur de coups
+      count++;
+      document.getElementById("count").innerText = count;
+      // Vérification si les deux cartes retournées correspondent
+      setTimeout(checkForMatch, 1000);
     }
+  }
 
-    secondCard = this; // Définit la carte actuelle comme la deuxième carte
-    lockBoard = true; // Verrouille le plateau
-
-    checkForMatch(); // Vérifie si les deux cartes retournées correspondent
-  } // Vérifie si les deux cartes retournées correspondent
-
+  // Fonction pour vérifier si les deux cartes retournées correspondent
   function checkForMatch() {
+    const firstCard = flippedCards[0];
+    const secondCard = flippedCards[1];
     const firstCardImg = cards[firstCard.getAttribute("data-id")].img;
     const secondCardImg = cards[secondCard.getAttribute("data-id")].img;
 
-    const isMatch = firstCardImg === secondCardImg; // Compare les images des cartes
-
-    isMatch ? disableCards() : unflipCards();
-  } // Désactive les cartes correspondantes
-
-  function disableCards() {
-    firstCard.removeEventListener("click", flipCard); // Supprime l'événement click de la première carte
-    secondCard.removeEventListener("click", flipCard); // Supprime l'événement click de la deuxième carte
-
-    firstCard.classList.add("matched"); // Ajoute la classe matched à la première carte
-    secondCard.classList.add("matched"); // Ajoute la classe matched à la deuxième carte
-
-    resetBoard(); // Réinitialise le plateau
+    // Si les cartes correspondent, les désactiver, sinon les retourner
+    if (firstCardImg === secondCardImg) {
+      disableCards();
+    } else {
+      unflipCards();
+    }
   }
 
-  // Retourne les cartes non correspondantes
+  // Fonction pour désactiver les cartes correspondantes
+  function disableCards() {
+    flippedCards.forEach((card) => {
+      card.classList.add("matched");
+    });
+    flippedCards = [];
+
+    // Vérifier s'il y a victoire
+    checkForVictory();
+  }
+
+  // Fonction pour retourner les cartes non correspondantes
   function unflipCards() {
     setTimeout(() => {
-      firstCard.classList.remove("flipped"); // Supprime la classe flipped de la première carte
-      secondCard.classList.remove("flipped"); // Supprime la classe flipped de la deuxième carte
-
-      firstCard.style.backgroundImage = ""; // Supprime l'image de fond de la première carte
-      secondCard.style.backgroundImage = ""; // Supprime l'image de fond de la deuxième carte
-
-      resetBoard(); // Réinitialise le plateau
-    }, 1000); // Délai de 1.5 secondes avant de retourner les cartes
+      flippedCards.forEach((card) => {
+        card.classList.remove("flipped");
+      });
+      flippedCards = [];
+    }, 1000);
   }
 
-  // Réinitialise les variables de plateau
-  function resetBoard() {
-    [firstCard, secondCard, lockBoard] = [null, null, false]; // Réinitialise les cartes et déverrouille le plateau
+  // Fonction pour vérifier si toutes les cartes ont été appariées
+  function checkForVictory() {
+    const matchedCards = document.querySelectorAll(".box.matched");
+    if (matchedCards.length === cards.length) {
+      // Afficher un message de victoire
+      alert("Félicitations ! Vous avez gagné !");
+    }
   }
 
-  createBoard(); // Crée le plateau de jeu
+  // Appel de la fonction pour créer le plateau de jeu
+  createBoard();
 });

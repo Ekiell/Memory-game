@@ -4,50 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Terminids Memory</title>
     <link href="/Memory-game/CSS/style.css" rel="stylesheet">
     <link href="/Memory-game/CSS/memory.css" rel="stylesheet">
-    <title>Terminids Memory</title>
+    <style>
+        /* Ajoutez vos styles CSS personnalisés ici si nécessaire */
+    </style>
 </head>
 
 <body>
-<header>
-    <nav>
-        <ul>
-            <li>
-                <a href="/Memory-game/HTML/index.html">Accueil</a>
-            </li>
+    <header class="header">
+        <a href="Memory-game/HTML/memory.html" class="logo">Memory-game</a>
+        <!-- Menu de navigation -->
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <!-- Liens du menu -->
+            <li><a href="../HTML/index.html">Accueil</a></li>
+            <li><a href="../HTML/inscription.html">Inscription</a></li>
+            <li><a href="../HTML/connexion.html">Se connecter</a></li>
+            <li><a href="../HTML/profil.html">Profil</a></li>
+            <li><a href="../HTML/memory.html">Memory</a></li>
         </ul>
-        <ul>
-            <li>
-                <a href="/Memory-game/HTML/inscription.html">Inscription</a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a href="/Memory-game/HTML/connexion.html">Se connecter</a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a href="/Memory-game/HTML/profil.html">Profil</a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a href="/Memory-game/HTML/memory.html">Memory</a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <div class="main-container">
-        <h1 id="title-memory">Trouvez les memes monstres</h1>
-        <div id="resultat"></div>
-        <div class="boites"></div>
-    </div>
-</main>
-<script src="/Memory-game/JS/memory.js"></script>
+    </header>
+    <main>
+        <div class="main-container">
+            <h1 id="title-memory">Trouvez les memes monstres</h1>
+            <div id="resultat"></div>
+            <!-- Élément pour afficher le compteur de coups -->
+            <div id="coups">Coups: <span id="count">0</span></div>
+            <!-- Conteneur du plateau de jeu -->
+            <div class="boites"></div>
+        </div>
+    </main>
+
+    <script src="/Memory-game/JS/memory.js"></script>
 </body>
 
 </html>

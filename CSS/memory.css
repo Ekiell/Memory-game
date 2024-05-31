@@ -1,9 +1,10 @@
 .boites {
     display: grid;
-    /* Active le mode Grid*/
+    /* Active le mode Grid */
     grid-template-columns: repeat(4, 1fr);
     /* 4 colonnes de taille égale */
     grid-template-rows: repeat(3, 1fr);
+    /* 3 lignes de taille égale */
     grid-gap: 10px;
     /* Espace entre les cartes */
 }
@@ -11,50 +12,92 @@
 #title-memory {
     display: flex;
     justify-content: center;
+    /* Centre le titre horizontalement */
 }
 
 .box {
+    position: relative;
     width: 200px;
-    /* Définit la largeur de chaque carte en fonction de la taille de la grille */
     height: 200px;
-    /* Définit la hauteur de chaque carte */
-    background-image: url("https://ih1.redbubble.net/image.3939890202.5494/raf,360x360,075,t,fafafa:ca443f4786.jpg");
-    /* Définit la couleur de fond de chaque carte */
-    display: flex;
-    /* Utilise flexbox pour centrer le contenu des cartes */
-    justify-content: center;
-    /* Centre horizontalement le contenu des cartes */
-    align-items: center;
-    /* Centre verticalement le contenu des cartes */
-    font-size: 24px;
-    /* Définit la taille de la police du contenu des cartes */
+    perspective: 1000px;
+    /* Perspective pour les transformations 3D */
+}
+
+.box-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    /* Durée de l'animation de retournement */
+    transform-style: preserve-3d;
+    /* Permet de conserver l'effet 3D */
     cursor: pointer;
-    /* Change le curseur au survol pour indiquer que les cartes sont cliquables */
-    user-select: none;
-    /* Empêche la sélection de texte sur les cartes */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     border-radius: 10px;
+    /* Bords arrondis pour les cartes */
 }
 
-.box.flipped {
-    background-color: #dfdfdf;
-    /* Change la couleur de fond des cartes retournées */
+.box-front,
+.box-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    /* Cache la face arrière quand elle est derrière */
+    border-radius: 10px;
+    /* Bords arrondis pour les cartes */
 }
 
-.box.matched {
-    background-color: #dfdfdf;
-    /* Change la couleur de fond des cartes appariées */
+.box-front {
+    background-image: url("https://ih1.redbubble.net/image.3939890202.5494/raf,360x360,075,t,fafafa:ca443f4786.jpg");
+    /* Image de fond pour la face avant */
+    display: flex;
+    justify-content: center;
+    /* Centre le contenu horizontalement */
+    align-items: center;
+    /* Centre le contenu verticalement */
+    background-size: cover;
+    /* Ajuste la taille de l'image pour couvrir toute la carte */
+    background-position: center;
+    /* Centre l'image de fond */
+    font-size: 24px;
+    /* Taille de la police */
+}
+
+.box-back {
+    background-size: contain;
+    /* Ajuste la taille de l'image pour qu'elle soit entièrement visible */
+    background-position: center;
+    /* Centre l'image de fond */
+    background-repeat: no-repeat;
+    /* Empêche la répétition de l'image */
+    transform: rotateY(180deg);
+    /* Rotation pour la face arrière */
+    background-color: #E2E2E2;
+    /* Couleur de fond pour la face arrière */
+}
+
+.box.flipped .box-inner {
+    transform: rotateY(180deg);
+    /* Rotation pour retourner la carte */
+}
+
+.box.matched .box-inner {
+    transform: rotateY(180deg);
+    /* Rotation pour montrer la carte appariée */
     cursor: default;
-    /* Change le curseur pour indiquer que les cartes appariées ne sont plus cliquables */
+    /* Change le curseur pour indiquer que la carte n'est plus cliquable */
 }
 
 .main-container {
     display: flex;
     flex-direction: column;
+    /* Arrange les éléments en colonne */
     background-color: rgba(255, 255, 255, 0.8);
+    /* Couleur de fond avec transparence */
     padding: 20px;
+    /* Espace intérieur */
     margin: 10px;
+    /* Espace extérieur */
     border-radius: 5px;
+    /* Bords arrondis pour le conteneur principal */
 }
